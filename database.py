@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+import os
 
 '''
 Changes from sqlite3 to PostgreSQL
@@ -9,7 +10,7 @@ Changes from sqlite3 to PostgreSQL
 '''
 
 # sqlite3
-SQLALCHEMY_DATABASE_URL = "sqlite:///./todos.db"
+# SQLALCHEMY_DATABASE_URL = "sqlite:///./todos.db"
 
 # PostgreSQL
 # SQLALCHEMY_DATABASE_URL = "postgresql://postgres:dvd6900@localhost/TodoApplicationDatabase"
@@ -19,10 +20,17 @@ SQLALCHEMY_DATABASE_URL = "sqlite:///./todos.db"
                                                                                  # {password}@{url_for_database}:
                                                                                  # {port_for_database}/{database_name}
 
+#Heroku Postgres
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
+# Below replacement is required because postgres url from heroku doesnt contain ql which is neede to connectgit
+if SQLALCHEMY_DATABASE_URL.startswith("postgres://"):
+    SQLALCHEMY_DATABASE_URL = SQLALCHEMY_DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+
 # sqlite3
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
-)
+# engine = create_engine(
+#     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+# )
 
 #PostgreSQL and MySQL
 engine = create_engine(
