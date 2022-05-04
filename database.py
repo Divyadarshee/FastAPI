@@ -9,10 +9,10 @@ Changes from sqlite3 to PostgreSQL
 '''
 
 # sqlite3
-# SQLALCHEMY_DATABASE_URL = "sqlite:///./todos.db"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./todos.db"
 
 # PostgreSQL
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:dvd6900@localhost/TodoApplicationDatabase"
+# SQLALCHEMY_DATABASE_URL = "postgresql://postgres:dvd6900@localhost/TodoApplicationDatabase"
 
 # MySQL
 # SQLALCHEMY_DATABASE_URL = "mysql+pymysql://root:dvd6900@127.0.0.1:3306/todoapp"  # mysql+mysql://{username}:
@@ -20,9 +20,9 @@ SQLALCHEMY_DATABASE_URL = "postgresql://postgres:dvd6900@localhost/TodoApplicati
                                                                                  # {port_for_database}/{database_name}
 
 # sqlite3
-# engine = create_engine(
-#     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
-# )
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+)
 
 #PostgreSQL and MySQL
 engine = create_engine(
